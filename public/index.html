@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>My ParseApp site</title>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="../javascripts/parse-1.2.18.js"></script>
+    <script src="/javascripts/todo.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/todo.css">
+    <script>
+      Parse.initialize("0rL9yJmMaIsMF3lAKyLSgEOFDUWLKiHA4lF3X10e", "ax75ClFUMuWhbzVSFhcjXts0zvOfucGDaDdeuXfo")
+    </script>
+  </head>
+  <body>
+    <h1>My ToDo List</h1>
+
+    <form id="create-task-form">
+      <input type="text" id="task-description-field" placeholder="Type task to add here.">
+      <input type="submit">
+    </form>
+
+    <div id="task-list">
+    </div>
+  </body>
+</html>
