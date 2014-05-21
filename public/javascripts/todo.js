@@ -14,7 +14,7 @@ function getTasks(callBack){
 
       $.each(results, function(index, task){
         if (task.attributes.complete === false){
-          var taskTemplate = new EJS({ url: "/partials/_task.ejs" }).render({description: task.attributes.description, complete: task.attributes.complete, id: index})
+          var taskTemplate = new EJS({ url: "/partials/task.ejs" }).render({description: task.attributes.description, complete: task.attributes.complete, id: index})
           $("#task-list").append(taskTemplate)
         }
       })
@@ -47,7 +47,6 @@ function createTask(){
         task.save(null,{
           success: function(){
             getTasks(attachEventHandlers)
-            console.log("task created")
           }
         })
       }
