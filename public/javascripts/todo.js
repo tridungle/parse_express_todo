@@ -2,7 +2,8 @@ $(document).on("ready", function(){
   getTasks(attachEventHandlers)
 })
 
-function getTasks(callback){
+function getTasks(callBack){
+  console.log("get tasks")
   var Task = Parse.Object.extend("Task")
   var allTasks = new Parse.Query(Task)
 
@@ -19,7 +20,8 @@ function getTasks(callback){
         }
       })
 
-      callback()
+      errorHandler.clearError()
+      callBack()
     },
     error: function(error){
       console.log(error.message)
@@ -29,20 +31,31 @@ function getTasks(callback){
 
 function createTask(){
   var Task = Parse.Object.extend("Task");
-  var task = new Task();
-
   var description = $("#task-description-field").val()
 
-  task.set("description", description)
-  task.set("complete", false)
+  var query = new Parse.Query(Task)
 
-  task.save(null, {
-    success: function(){
-      console.log("Task Created")
-      getTasks()
+  query.equalTo("description", description)
+  query.find({
+    success: function(results){
+      if (results.length > 0){
+        errorHandler.showError("You've already completed that task.")
+      }
+      else {
+        var task = new Task()
+
+        task.set("description", description)
+        task.set("complete", false)
+        task.save(null,{
+          success: function(){
+            getTasks(attachEventHandlers)
+            console.log("task created")
+          }
+        })
+      }
     },
-    error: function(post, error){
-      console.log(error.message)
+    error: function(error){
+      error.messages
     }
   })
 }
@@ -52,7 +65,6 @@ function deleteTask(task_to_delete){
   var query = new Parse.Query(Task)
 
   query.equalTo("description", task_to_delete.textContent.trim())
-
   query.find({
     success: function(results){
       var task = results[0]
@@ -61,8 +73,17 @@ function deleteTask(task_to_delete){
       console.log("updated")
     }
   })
-
   task_to_delete.remove()
+}
+
+var errorHandler = {
+  showError: function(message){
+    $("#error-messages").append(message)
+  },
+
+  clearError: function(){
+    $("#error-messages").empty()
+  }
 }
 
 function attachEventHandlers(){
@@ -71,7 +92,7 @@ function attachEventHandlers(){
     deleteTask(this.parentNode)
   })
 
-  $("#create-task-form").on("submit", function(event){
+  $("#create-task-form").unbind("submit").bind("submit", function(){
     event.preventDefault()
     createTask()
   })
