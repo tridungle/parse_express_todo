@@ -6,21 +6,24 @@
     <script src="./javascripts/ejs.js"></script>
     <script src="./javascripts/todo.js"></script>
     <link rel="stylesheet" type="text/css" href="/stylesheets/todo.css">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <script>
       Parse.initialize("0rL9yJmMaIsMF3lAKyLSgEOFDUWLKiHA4lF3X10e", "ax75ClFUMuWhbzVSFhcjXts0zvOfucGDaDdeuXfo")
     </script>
   </head>
   <body>
-    <div id="error-messages"></div>
+    <div id="container">
+      <div id="error-messages"></div>
 
-    <h1>My ToDo List</h1>
+      <h1>My ToDo List</h1>
 
-    <form id="create-task-form">
-      <input type="text" id="task-description-field" placeholder="Type task to add here.">
-      <input type="submit">
-    </form>
+      <form id="create-task-form">
+        <input type="text" id="task-description-field" placeholder="Add task here." required>
+        <input class="button" type="submit">
+      </form>
 
-    <div id="task-list">
+      <div id="task-list">
+      </div>
     </div>
   </body>
 </html>
