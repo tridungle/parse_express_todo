@@ -1,0 +1,60 @@
+body {
+  background-color: #ecf0f1;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 22x;
+}
+
+h1 {
+  color: #c0392b;
+}
+
+#container {
+  text-align: center;
+  padding-top: 10%;
+}
+
+#task-description-field {
+  text-align: center;
+  font-size: 1.1em;
+  width: 23em;
+  height: 3em;
+  margin-right: 1em;
+}
+
+.task-item {
+  padding-bottom: .5em;
+  font-size: 1.1em;
+}
+
+.button {
+  border: 0;
+  background: #5786c1;
+  color: white;
+  padding: 8px 14px;
+  font-weight: bold;
+  font-size: 18px;
+  text-decoration: none;
+  display: inline-block; /* needed for anchors */
+  position: relative;
+  box-shadow: 1px 0px #3a587f, 0px 1px #4171ae,
+              2px 1px #3a587f, 1px 2px #4171ae,
+              3px 2px #3a587f, 2px 3px #4171ae,
+              4px 3px #3a587f, 3px 4px #4171ae,
+              5px 4px #3a587f, 4px 5px #4171ae,
+              6px 5px #3a587f, 5px 6px #4171ae;
+  &:hover, &:focus,
+  &.hover, &.focus {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 0px #3a587f, 0px 1px #4171ae,
+              2px 1px #3a587f, 1px 2px #4171ae,
+              3px 2px #3a587f, 2px 3px #4171ae,
+              4px 3px #3a587f, 3px 4px #4171ae;
+  }
+  &:active,
+  &.active {
+    transform: translate(4px, 4px);
+    box-shadow: 1px 0px #3a587f, 0px 1px #4171ae,
+              2px 1px #3a587f, 1px 2px #4171ae;
+  }
+}
+

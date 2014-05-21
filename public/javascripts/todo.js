@@ -3,7 +3,6 @@ $(document).on("ready", function(){
 })
 
 function getTasks(callBack){
-  console.log("get tasks")
   var Task = Parse.Object.extend("Task")
   var allTasks = new Parse.Query(Task)
 
@@ -20,7 +19,6 @@ function getTasks(callBack){
         }
       })
 
-      errorHandler.clearError()
       callBack()
     },
     error: function(error){
@@ -93,6 +91,7 @@ function attachEventHandlers(){
   })
 
   $("#create-task-form").unbind("submit").bind("submit", function(){
+    errorHandler.clearError()
     event.preventDefault()
     createTask()
   })
